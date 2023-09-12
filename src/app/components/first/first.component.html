@@ -1,0 +1,27 @@
+<div [ngClass]="clasesBorde">
+  <p>
+    <input
+      (keydown.shift.space)="poneMayuscula($event)"
+      [(ngModel)]="nombre"
+      placeholder="Nombre"
+    />
+  </p>
+  <p>
+    <button (click)="decrementaEdad()">-</button>
+    <span> {{ edad }} años </span>
+    <button (click)="incrementaEdad()">+</button>
+  </p>
+
+  <div [ngStyle]="estiloLetras">Validando edad...</div>
+
+  <button (click)="resetea()">Resetear</button>
+  <button [disabled]="edad < 18 || !this.nombre.trim()" (click)="inserta()">
+    Insertar
+  </button>
+</div>
+<ng-container *ngIf="edad >= 18; else miBloqueElse"
+  >Es mayor de edad</ng-container
+>
+<ng-template #miBloqueElse>Es menor de edad</ng-template>
+
+<hr />
